@@ -33,7 +33,6 @@ class TelegramUpdate(BaseModel):
     message: Optional[Dict[str, Any]] = None
 
 
-# FAQ responses - easy to extend
 FAQ_RESPONSES = {
     "hours": "Our business hours are Monday to Friday, 9 AM to 6 PM EST. We're closed on weekends and public holidays.",
     "location": "We're located at 123 Main Street, Suite 100, New York, NY 10001. You can also reach us online 24/7!",
@@ -44,12 +43,7 @@ FAQ_RESPONSES = {
 }
 
 
-# Helper Functions
 def check_faq(message_text: str) -> Optional[str]:
-    """
-    Check if the message matches any FAQ keywords.
-    Returns the FAQ answer if found, None otherwise.
-    """
     message_lower = message_text.lower()
     
     for keyword, response in FAQ_RESPONSES.items():
@@ -66,7 +60,7 @@ def get_ai_response(user_message: str) -> str:
     """
     try:
         response = client.chat.completions.create(
-            model="gpt-3.5-turbo",  # You can change to "gpt-4" if you have access
+            model="gpt-3.5-turbo",
             messages=[
                 {
                     "role": "system",
@@ -95,9 +89,6 @@ def get_ai_response(user_message: str) -> str:
 
 
 def send_telegram_message(chat_id: int, text: str) -> bool:
-    """
-    Send a message to a Telegram chat using the Bot API.
-    """
     url = f"{TELEGRAM_API_URL}/sendMessage"
     payload = {
         "chat_id": chat_id,
@@ -117,10 +108,6 @@ def send_telegram_message(chat_id: int, text: str) -> bool:
 
 
 def process_message(message: Dict[str, Any]) -> None:
-    """
-    Process an incoming message and send an appropriate response.
-    """
-    # Extract message details
     chat_id = message.get("chat", {}).get("id")
     message_text = message.get("text", "")
     user_name = message.get("from", {}).get("first_name", "there")
@@ -147,14 +134,11 @@ def process_message(message: Dict[str, Any]) -> None:
         send_telegram_message(chat_id, welcome_message)
         return
     
-    # Check FAQ first
     faq_response = check_faq(message_text)
     
     if faq_response:
-        # Send FAQ response
         send_telegram_message(chat_id, faq_response)
     else:
-        # Generate AI response
         ai_response = get_ai_response(message_text)
         send_telegram_message(chat_id, ai_response)
 
@@ -200,19 +184,13 @@ def set_webhook(webhook_url: str):
 
 @app.post("/webhook")
 async def webhook(request: Request):
-    """
-    Handle incoming updates from Telegram.
-    """
     try:
-        # Parse the incoming update
         update_data = await request.json()
         logger.info(f"Received update: {update_data}")
         
-        # Extract message from update
         message = update_data.get("message")
         
         if message:
-            # Process the message
             process_message(message)
         else:
             logger.warning("Received update without a message")
@@ -221,15 +199,11 @@ async def webhook(request: Request):
     
     except Exception as e:
         logger.error(f"Error processing webhook: {e}")
-        # Return 200 to prevent Telegram from retrying
         return {"status": "error", "message": str(e)}
 
 
 @app.get("/webhook_info")
 def get_webhook_info():
-    """
-    Get current webhook information from Telegram.
-    """
     url = f"{TELEGRAM_API_URL}/getWebhookInfo"
     
     try:
