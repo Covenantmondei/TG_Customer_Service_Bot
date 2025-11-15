@@ -1,8 +1,8 @@
-# Telegram Customer Support AI Agent 🤖
+# Telegram Customer Support AI Agent
 
 A FastAPI-powered Telegram bot that provides intelligent customer support using OpenAI's GPT models. The bot can handle common FAQs instantly and uses AI to respond to complex customer inquiries.
 
-## Features ✨
+## Features
 
 - **Instant FAQ Responses**: Predefined answers for common questions (hours, location, contact, shipping, returns, payment)
 - **AI-Powered Support**: OpenAI GPT integration for handling complex customer queries
@@ -11,14 +11,14 @@ A FastAPI-powered Telegram bot that provides intelligent customer support using 
 - **Production-Ready**: Comprehensive error handling and logging
 - **Secure**: Environment variable management for sensitive credentials
 
-## Prerequisites 📋
+## Prerequisites 
 
 - Python 3.8 or higher
 - A Telegram Bot Token (from [@BotFather](https://t.me/botfather))
 - An OpenAI API Key (from [OpenAI Platform](https://platform.openai.com/))
 - A public URL for webhook (deployment server or ngrok for testing)
 
-## Installation 🚀
+## Installation 
 
 1. **Clone the repository**
    ```powershell
@@ -45,7 +45,7 @@ A FastAPI-powered Telegram bot that provides intelligent customer support using 
    OPENAI_API_KEY=your_openai_api_key_here
    ```
 
-## Usage 💻
+## Usage 
 
 ### Running Locally
 
@@ -93,7 +93,7 @@ Check if your webhook is properly configured:
 GET https://your-domain.com/webhook_info
 ```
 
-## API Endpoints 📡
+## API Endpoints 
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
@@ -102,13 +102,13 @@ GET https://your-domain.com/webhook_info
 | `POST` | `/webhook` | Handle incoming Telegram messages |
 | `GET` | `/webhook_info` | Get current webhook information |
 
-## Bot Commands 🎯
+## Bot Commands 
 
 Users can interact with the bot using these commands:
 
 - `/start` - Welcome message and bot introduction
 
-## FAQ Keywords 🔑
+## FAQ Keywords 
 
 The bot automatically detects these keywords and provides instant responses:
 
@@ -119,7 +119,7 @@ The bot automatically detects these keywords and provides instant responses:
 - **returns** - Return policy details
 - **payment** - Accepted payment methods
 
-## Customization 🛠️
+## Customization 
 
 ### Adding More FAQ Responses
 
@@ -155,7 +155,7 @@ Edit the system prompt in `get_ai_response()` function:
 }
 ```
 
-## Project Structure 📁
+## Project Structure 
 
 ```
 Tg_Bot/
@@ -168,7 +168,7 @@ Tg_Bot/
 └── __pycache__/        # Python cache (not in git)
 ```
 
-## Dependencies 📦
+## Dependencies 
 
 - `fastapi` - Web framework
 - `uvicorn` - ASGI server
@@ -177,14 +177,14 @@ Tg_Bot/
 - `requests` - HTTP library for Telegram API
 - `pydantic` - Data validation
 
-## Environment Variables 🔐
+## Environment Variables 
 
 | Variable | Description | Required |
 |----------|-------------|----------|
 | `BOT_TOKEN` | Your Telegram Bot Token from @BotFather | Yes |
 | `OPENAI_API_KEY` | Your OpenAI API Key | Yes |
 
-## Deployment Options 🌐
+## Deployment Options 
 
 ### Heroku
 
@@ -208,7 +208,7 @@ git push heroku main
 3. Add environment variables
 4. Deploy
 
-## Troubleshooting 🔧
+## Troubleshooting 
 
 ### Bot not responding
 
@@ -235,7 +235,7 @@ git push heroku main
 - Check if the webhook URL matches your server URL
 - Telegram requires HTTPS for webhooks (ngrok provides this automatically)
 
-## Security Best Practices 🔒
+## Security Best Practices 
 
 - ✅ Never commit `.env` file to version control
 - ✅ Keep your API keys secure
@@ -243,7 +243,7 @@ git push heroku main
 - ✅ Regularly rotate your API keys
 - ✅ Monitor API usage and costs
 
-## Contributing 🤝
+## Contributing 
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
@@ -253,17 +253,17 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## License 📄
+## License 
 
 This project is open source and available under the [MIT License](LICENSE).
 
-## Support 💬
+## Support 
 
 For issues, questions, or suggestions:
 - Open an issue on GitHub
 - Contact: [@Covenantmondei](https://github.com/Covenantmondei)
 
-## Acknowledgments 🙏
+## Acknowledgments 
 
 - [FastAPI](https://fastapi.tiangolo.com/) - Modern web framework
 - [OpenAI](https://openai.com/) - AI API
